@@ -28,9 +28,11 @@ batch_connect:
 
 script:
   native:
-    - "-N"
+    - "--job-name"
     - "jserver"
-    - "-q"
-    - "<%= pbs_queue %>"
-    - "-l"
-    - "select=<%= pbs_select %>:ncpus=<%= pbs_ncpus %>:mpiprocs=<%= pbs_ncpus %>:mem=<%= pbs_mem %><%= pbs_interconnect %><%= pbs_ngpus %><%= pbs_gpu_model %><%= pbs_extras %>,walltime=<%= pbs_walltime %>"
+    - "--partition=<%= slurm_partition %>"
+    - "--nodes=1"
+    - "--ntasks-per-node=<%= slurm_task_per_nodes %>"
+    - "--mem=<%= slurm_mem %>"
+    - "--time=<%= slurm_walltime %>"
+    

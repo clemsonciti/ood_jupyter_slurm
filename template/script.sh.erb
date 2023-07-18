@@ -27,7 +27,7 @@ cd "${HOME}"
 #
 
 module purge
-module load <%= context.modules %> <%= context.pbs_modules %>
+module load <%= context.modules %>
 
 <%-
   # Configure NGINX
@@ -42,7 +42,7 @@ module load <%= context.modules %> <%= context.pbs_modules %>
 set -x
 module list
 # Load the environment (if specified)
-<%= context.pbs_venv %>
+<%= context.conda_env %>
 
 
 #
