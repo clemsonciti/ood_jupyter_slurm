@@ -9,6 +9,8 @@ form:
   - conda_env
   - slurm_task_per_nodes
   - slurm_mem
+  - slurm_use_gpus
+  - slurm_num_gpus
   - slurm_walltime
   - slurm_partition
   - working_dir
@@ -34,11 +36,28 @@ attributes:
       </small>
   slurm_task_per_nodes:
     label: "CPU cores per chunk (ncpus)"
-    value: "64"
+    value: 1
+    widget: "number_field"
+    min: 1
+    max: 64
     help: |
       <small> - Typical Palmetto2 compute nodes have <b>64</b> cores.<br>
       - <b>Users can request any number of cores that is smaller than the number of available cores.</b>
       </small>
+  slurm_use_gpus:
+    label: "Use GPUs"
+    value: "No"
+    widget: "select"
+    options:
+     - ["Yes"]
+     - ["No", data-hide-slurm-num-gpus: True]
+  slurm_num_gpus:
+    label: "Number of GPUs"
+    value: "1"
+    widget: "select"
+    options:
+     - ["1"]
+     - ["2"]
   slurm_mem:
     label: "Amount of memory per chunk (mem)"
     value: "16G"

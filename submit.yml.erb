@@ -34,5 +34,8 @@ script:
     - "--nodes=1"
     - "--ntasks-per-node=<%= slurm_task_per_nodes %>"
     - "--mem=<%= slurm_mem %>"
-    - "--time=<%= slurm_walltime %>"
+    <% if slurm_use_gpus =~ /Yes/ -%>
+- "--gpus=<%= slurm_num_gpus  %>"
+    <% end -%>
+- "--time=<%= slurm_walltime %>"
     
